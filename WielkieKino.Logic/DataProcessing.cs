@@ -35,9 +35,10 @@ namespace WielkieKino.Logic
 
         public static List<Film> WybierzFilmyPokazywaneDanegoDnia(List<Seans> seanse, DateTime data)
         {
-            int comparison;
-            List<Seans> ListaSeansów = (from Seans s in seanse where (comparison = s.Date.CompareTo(data))==0 select s).ToList();
-            List<Film> FilmyDanegoDnia = (from Film f in ListaSeansów select f).ToList();
+             List<Film> FilmyDanegoDnia = (from Seans s in seanse
+                                           where data.Day == s.Date.Day
+                                           select s.Film).ToList();
+            // Można dodać descending by usunąć duplikaty
 
             return FilmyDanegoDnia;
         }
@@ -67,10 +68,17 @@ namespace WielkieKino.Logic
 
         public static Sala ZwrocSaleGdzieJestNajwiecejSeansow(List<Seans> seanse, DateTime data)
         {
-            //int comparison;
-            //Sala sala = (Sala => { comparison = Sala.Date.CompareTo(data); return Sala; });
+            List<Seans> seanseDlaDaty;
+            seanseDlaDaty = (from Seans s in seanse
+                             where s.Date.CompareTo(data)==0
+                             select s).ToList();
+
+            Sala sala = (from Seans s in seanseDlaDaty
+                         group s by s.Sala into gr
+                         orderby gr.Count() descending
+                         select gr.Key).First();
             // Właściwa odpowiedź dla daty 2019-01-20: sala "Wisła" 
-            return null;
+            return sala;
         }
 
         /// <summary>
@@ -80,11 +88,14 @@ namespace WielkieKino.Logic
         /// <param name="filmy"></param>
         /// <param name="bilety"></param>
         /// <returns></returns>
-        public Film ZwrocFilmNaKtorySprzedanoNajwiecejBiletow(List<Film> filmy, List<Bilet> bilety)
+        public static Film ZwrocFilmNaKtorySprzedanoNajwiecejBiletow(List<Film> filmy, List<Bilet> bilety)
         {
-
+            Film film = (from Bilet b in bilety
+                         group b by b.Seans.Film into gr
+                         orderby gr.Count() descending
+                         select gr.Key).First();
             // Właściwa odpowiedź: "Konan Destylator"
-            return null;
+            return film;
         }
 
         /// <summary>
@@ -94,10 +105,14 @@ namespace WielkieKino.Logic
         /// <param name="filmy"></param>
         /// <param name="bilety"></param>
         /// <returns></returns>
-        public Film PosortujFilmyPoDochodach(List<Film> filmy, List<Bilet> bilety)
+        public static List<Film> PosortujFilmyPoDochodach(List<Film> filmy, List<Bilet> bilety)
         {
+            List<Film> FilmyPoDochodach = (from Bilet b in bilety
+                         group b by b.Seans.Film into gr
+                         orderby gr.Sum(x => x.Cena) descending
+                         select gr.Key).ToList();
 
-            return null;
+            return FilmyPoDochodach;
         }
 
 

@@ -59,7 +59,7 @@ namespace WielkieKino.Dane
 
             foreach(Seans seans in aktualneSeanse)
             {
-                if (seans.Date == data)
+                if (seans.Date.CompareTo(data) == 0)
                 {
                     if (seans.Film == film)
                     {

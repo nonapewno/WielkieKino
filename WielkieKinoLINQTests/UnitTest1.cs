@@ -44,7 +44,7 @@ namespace WielkieKinoLINQTests
         {
             bool result = false;
             DateTime data = new DateTime(2019, 1, 20, 16, 00, 00);
-            if (DataProcessing.WybierzFilmyPokazywaneDanegoDnia(SkladDanych.Seanse, data).Count == 6)
+            if (DataProcessing.WybierzFilmyPokazywaneDanegoDnia(SkladDanych.Seanse, data).Count == 7)
             {
                 result = true;
             }
@@ -77,7 +77,33 @@ namespace WielkieKinoLINQTests
         public void ZwrocSaleGdzieJestNajwiecejSeansowTest()
         {
             bool result = false;
-            //DataProcessing.ZwrocSaleGdzieJestNajwiecejSeansow
+            DateTime data = new DateTime(2019, 1, 20, 16, 00, 00);
+            if (DataProcessing.ZwrocSaleGdzieJestNajwiecejSeansow(SkladDanych.Seanse, data).Nazwa == "Wisła")
+            {
+                result = true;
+            }
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void PosortujFilmyPoDochodachTest()
+        {
+            bool result = false;
+            if(DataProcessing.PosortujFilmyPoDochodach(SkladDanych.Filmy, SkladDanych.Bilety)[0].Tytul == "Konan Destylator")
+            {
+                result = true;
+            }
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void ZwrocFilmNaKtorySprzedanoNajwiecejBiletowTest()
+        {
+            bool result = false;
+            if(DataProcessing.ZwrocFilmNaKtorySprzedanoNajwiecejBiletow(SkladDanych.Filmy,SkladDanych.Bilety).Tytul == "Konan Destylator")
+            {
+                result = true;
+            }
             Assert.IsTrue(result);
         }
     }
