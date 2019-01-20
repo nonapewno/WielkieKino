@@ -34,13 +34,13 @@ namespace WielkieKino.App
                     {
                         if (bilet.Miejsce == j && bilet.Rzad == i)
                         {
-                            Console.Write("X");
+                            Console.Write("X ");
                             jest = 1;
                         }
                     }
                     if(jest == 0)
                     {
-                        Console.Write("_");
+                        Console.Write("_ ");
                     }
                 }
                 Console.WriteLine("");

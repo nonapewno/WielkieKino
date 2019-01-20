@@ -53,7 +53,7 @@ namespace WielkieKino.Dane
         /// <param name="film"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public bool CzyMoznaDodacSeans(List<Seans> aktualneSeanse, Sala sala, Film film, DateTime data)
+        public static bool CzyMoznaDodacSeans(List<Seans> aktualneSeanse, Sala sala, Film film, DateTime data)
         {
             bool result = true;
 
@@ -85,7 +85,7 @@ namespace WielkieKino.Dane
         /// <param name="sprzedaneBilety">wszystkie sprzedane bilety</param>
         /// <param name="seansDoSprawdzenia"></param>
         /// <returns></returns>
-        public int LiczbaWolnychMiejscWSali(List<Bilet> sprzedaneBilety, Seans seansDoSprawdzenia)
+        public static int LiczbaWolnychMiejscWSali(List<Bilet> sprzedaneBilety, Seans seansDoSprawdzenia)
         {
             int LiczbaSprzedanychBiletów = 0;
             int LiczbaWolnychMiejsc = 0;
@@ -103,7 +103,7 @@ namespace WielkieKino.Dane
             return LiczbaWolnychMiejsc;
         }
 
-        public double CalkowitePrzychodyZBiletow(List<Bilet> sprzedaneBilety)
+        public static double CalkowitePrzychodyZBiletow(List<Bilet> sprzedaneBilety)
         {
             double SumaPrzychoduZBiletów = 0;
 
