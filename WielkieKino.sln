@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WielkieKinoTests", "WielkieKinoTests\WielkieKinoTests.csproj", "{890CF8BD-9DA7-41FE-BA05-D3A8FF0DCF78}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WielkieKinoLINQTests", "WielkieKinoLINQTests\WielkieKinoLINQTests.csproj", "{0372D83B-2554-48FD-A850-B99B8D785F72}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{890CF8BD-9DA7-41FE-BA05-D3A8FF0DCF78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{890CF8BD-9DA7-41FE-BA05-D3A8FF0DCF78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{890CF8BD-9DA7-41FE-BA05-D3A8FF0DCF78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0372D83B-2554-48FD-A850-B99B8D785F72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0372D83B-2554-48FD-A850-B99B8D785F72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0372D83B-2554-48FD-A850-B99B8D785F72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0372D83B-2554-48FD-A850-B99B8D785F72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

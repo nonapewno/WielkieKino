@@ -13,10 +13,11 @@ namespace WielkieKino.Logic
     /// </summary>
     public class DataProcessing
     {
-        public List<string> WybierzFilmyZGatunku(List<Film> filmy, string gatunek)
+        public static List<string> WybierzFilmyZGatunku(List<Film> filmy, string gatunek)
         {
+            List<string> ListaFilmówZGatunku = (from Film f in filmy where f.Gatunek == gatunek select f.Tytul).ToList();
             // Właściwa odpowiedź: np. "Konan Destylator" dla "Fantasy"
-            return null;
+            return ListaFilmówZGatunku;
         }
 
         /// <summary>
@@ -24,15 +25,21 @@ namespace WielkieKino.Logic
         /// </summary>
         /// <param name="bilety"></param>
         /// <returns></returns>
-        public int PodajCalkowiteWplywyZBiletow(List<Bilet> bilety)
+        public static int PodajCalkowiteWplywyZBiletow(List<Bilet> bilety)
         {
+            int wpływy = 0;
+            wpływy = Convert.ToInt32(bilety.Sum(Bilet => Bilet.Cena));
             // Właściwa odpowiedź: 400
-            return -1;
+            return wpływy;
         }
 
-        public List<Film> WybierzFilmyPokazywaneDanegoDnia(List<Seans> seanse, DateTime data)
+        public static List<Film> WybierzFilmyPokazywaneDanegoDnia(List<Seans> seanse, DateTime data)
         {
-            return null;
+            int comparison;
+            List<Seans> ListaSeansów = (from Seans s in seanse where (comparison = s.Date.CompareTo(data))==0 select s).ToList();
+            List<Film> FilmyDanegoDnia = (from Film f in ListaSeansów select f).ToList();
+
+            return FilmyDanegoDnia;
         }
 
         /// <summary>
@@ -41,20 +48,27 @@ namespace WielkieKino.Logic
         /// </summary>
         /// <param name="filmy"></param>
         /// <returns></returns>
-        public string NajpopularniejszyGatunek(List<Film> filmy)
+        public static string NajpopularniejszyGatunek(List<Film> filmy)
         {
+            string PopularnyGatunek;
+            PopularnyGatunek = Convert.ToString(filmy.Max(Film => Film.Gatunek));
             // Właściwa odpowiedź: Obyczajowy
-            return null;
+            return PopularnyGatunek;
         }
 
-        public List<Sala> ZwrocSalePosortowanePoCalkowitejLiczbieMiejsc(List<Sala> sale)
+        public static List<Sala> ZwrocSalePosortowanePoCalkowitejLiczbieMiejsc(List<Sala> sale)
         {
+            List<Sala> SortowanieSalPoLiczbieMiejsc = (from Sala s in sale
+                                                       orderby s.LiczbaMiejscWRzedzie * s.LiczbaRzedow
+                                                       select s).ToList();
             // Właściwa odpowiedź: Kameralna, Bałtyk, Wisła (lub w odwrotnej kolejności)
-            return null;
+            return SortowanieSalPoLiczbieMiejsc;
         }
 
-        public Sala ZwrocSaleGdzieJestNajwiecejSeansow(List<Seans> seanse, DateTime data)
+        public static Sala ZwrocSaleGdzieJestNajwiecejSeansow(List<Seans> seanse, DateTime data)
         {
+            //int comparison;
+            //Sala sala = (Sala => { comparison = Sala.Date.CompareTo(data); return Sala; });
             // Właściwa odpowiedź dla daty 2019-01-20: sala "Wisła" 
             return null;
         }
@@ -68,6 +82,7 @@ namespace WielkieKino.Logic
         /// <returns></returns>
         public Film ZwrocFilmNaKtorySprzedanoNajwiecejBiletow(List<Film> filmy, List<Bilet> bilety)
         {
+
             // Właściwa odpowiedź: "Konan Destylator"
             return null;
         }
@@ -81,6 +96,7 @@ namespace WielkieKino.Logic
         /// <returns></returns>
         public Film PosortujFilmyPoDochodach(List<Film> filmy, List<Bilet> bilety)
         {
+
             return null;
         }
 

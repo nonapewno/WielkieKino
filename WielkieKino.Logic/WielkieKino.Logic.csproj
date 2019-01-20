@@ -45,6 +45,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WielkieKino.Dane\WielkieKino.Dane.csproj">
+      <Project>{bee3161f-c21f-4fcc-b73c-8146f7d207e8}</Project>
+      <Name>WielkieKino.Dane</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WielkieKino.Lib\WielkieKino.Lib.csproj">
       <Project>{fcb35363-bfe5-4984-8448-175c9ce54c8c}</Project>
       <Name>WielkieKino.Lib</Name>
