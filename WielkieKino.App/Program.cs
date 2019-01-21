@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using WielkieKino.Lib;
@@ -71,6 +73,38 @@ namespace WielkieKino.App
             }
             //Wskazówka: Do obliczenia czy parametr data "wpada" w film można wykorzystać
             //metodę AddMinutes wykonanej na czasie rozpoczęcia seansu.
+        }
+        public class TabeleDanych : DbContext
+        {
+            public DbSet<Seans> Seanse;
+            public DbSet<Bilet> Bilety;
+            public DbSet<Film> Filmy;
+            public DbSet<Sala> Sale;
+        }
+
+        static void Create()
+        {
+            using (TabeleDanych WielkieKino = new TabeleDanych())
+            {
+                foreach (Film f in Dane.SkladDanych.Filmy)
+                {
+                    WielkieKino.Filmy.Add(f);
+                }
+                foreach (Sala s in Dane.SkladDanych.Sale)
+                {
+                    WielkieKino.Sale.Add(s);
+                }
+                foreach (Bilet b in Dane.SkladDanych.Bilety)
+                {
+                    WielkieKino.Bilety.Add(b);
+                }
+                foreach (Seans s in Dane.SkladDanych.Seanse)
+                {
+                    WielkieKino.Seanse.Add(s);
+                }
+
+                WielkieKino.SaveChanges();
+            }
         }
 
         public static void Main(string[] args)
